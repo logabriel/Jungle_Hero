@@ -34,16 +34,31 @@ class FallState(BaseEntityState):
                 self.entity.change_state("idle")
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == "move_left":
-            if input_data.pressed:
-                self.entity.vx = -settings.PLAYER_SPEED
-                self.entity.flipped = True
-            elif input_data.released and self.entity.vx <= 0:
-                self.entity.vx = 0
-
-        elif input_id == "move_right":
-            if input_data.pressed:
-                self.entity.vx = settings.PLAYER_SPEED
-                self.entity.flipped = False
-            elif input_data.released and self.entity.vx >= 0:
-                self.entity.vx = 0
+        if self.entity.player_type == 1:
+            if input_id == "move_left":
+                if input_data.pressed:
+                    self.entity.vx = -settings.PLAYER_SPEED
+                    self.entity.flipped = True
+                elif input_data.released and self.entity.vx <= 0:
+                    self.entity.vx = 0
+    
+            elif input_id == "move_right":
+                if input_data.pressed:
+                    self.entity.vx = settings.PLAYER_SPEED
+                    self.entity.flipped = False
+                elif input_data.released and self.entity.vx >= 0:
+                    self.entity.vx = 0
+        else :
+            if input_id == "move_left_p2":
+                if input_data.pressed:
+                    self.entity.vx = -settings.PLAYER_SPEED
+                    self.entity.flipped = True
+                elif input_data.released and self.entity.vx <= 0:
+                    self.entity.vx = 0
+    
+            elif input_id == "move_right_p2":
+                if input_data.pressed:
+                    self.entity.vx = settings.PLAYER_SPEED
+                    self.entity.flipped = False
+                elif input_data.released and self.entity.vx >= 0:
+                    self.entity.vx = 0

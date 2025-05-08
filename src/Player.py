@@ -18,30 +18,53 @@ from src.GameItem import GameItem
 
 
 class Player(GameEntity):
-    def __init__(self, x: int, y: int, game_level: TypeVar("GameLevel")) -> None:
-        super().__init__(
-            x,
-            y,
-            16,
-            20,
-            "martian",
-            game_level,
-            states={
-                "idle": lambda sm: player_states.IdleState(self, sm),
-                "walk": lambda sm: player_states.WalkState(self, sm),
-                "jump": lambda sm: player_states.JumpState(self, sm),
-                "fall": lambda sm: player_states.FallState(self, sm),
-                "dead": lambda sm: player_states.DeadState(self, sm),
-            },
-            animation_defs={
-                "idle": {"frames": [0]},
-                "walk": {"frames": [9, 10], "interval": 0.15},
-                "jump": {"frames": [2]},
-            },
-        )
+    def __init__(self, x: int, y: int, player_type: int, game_level: TypeVar("GameLevel")) -> None: # type: ignore
+        if player_type == 1:
+            super().__init__(
+                x,
+                y,
+                16,
+                20,
+                "martian",
+                game_level,
+                states={
+                    "idle": lambda sm: player_states.IdleState(self, sm),
+                    "walk": lambda sm: player_states.WalkState(self, sm),
+                    "jump": lambda sm: player_states.JumpState(self, sm),
+                    "fall": lambda sm: player_states.FallState(self, sm),
+                    "dead": lambda sm: player_states.DeadState(self, sm),
+                },
+                animation_defs={
+                    "idle": {"frames": [0]},
+                    "walk": {"frames": [9, 10], "interval": 0.15},
+                    "jump": {"frames": [2]},
+                },
+            )
+        else:
+            super().__init__(
+                x,
+                y,
+                16,
+                31,
+                "skater", #provisional
+                game_level,
+                states={
+                    "idle": lambda sm: player_states.IdleState(self, sm),
+                    "walk": lambda sm: player_states.WalkState(self, sm),
+                    "jump": lambda sm: player_states.JumpState(self, sm),
+                    "fall": lambda sm: player_states.FallState(self, sm),
+                    "dead": lambda sm: player_states.DeadState(self, sm),
+                },
+                animation_defs={
+                    "idle": {"frames": [0]},
+                    "walk": {"frames": [0, 1, 2, 3], "interval": 0.15},
+                    "jump": {"frames": [4]},
+                },
+            )
         self.score = 0
         self.coins_counter = {54: 0, 55: 0, 61: 0, 62: 0}
         self.key = False
+        self.player_type = player_type
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.state_machine.on_input(input_id, input_data)

@@ -23,12 +23,22 @@ input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, "quit")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_p, "pause")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, "enter")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP_ENTER, "enter")
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, "move_right")
+
+# Player 1
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_d, "move_right")
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, "move_left")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_a, "move_left")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_w, "move_up")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_s, "move_down")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_e, "accion")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_SPACE, "jump")
-input_handler.InputHandler.set_mouse_click_action(input_handler.MOUSE_BUTTON_1, "jump")
+
+# Player 2
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP6, "move_right_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP4, "move_left_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP8, "move_up_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP5, "move_down_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP7, "accion_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP0, "jump_p2")
 
 # Size we want to emulate
 VIRTUAL_WIDTH = 400
@@ -47,7 +57,11 @@ NUM_LEVELS = 2
 BASE_DIR = pathlib.Path(__file__).parent
 
 # The spawn position of the player in each level
-SPAWN_PLAYER = {
+SPAWN_PLAYER_1 = {
+    1: (0, VIRTUAL_HEIGHT - 66),
+    2: (0, VIRTUAL_HEIGHT - 80),
+}
+SPAWN_PLAYER_2 = {
     1: (0, VIRTUAL_HEIGHT - 66),
     2: (0, VIRTUAL_HEIGHT - 80),
 }
@@ -57,6 +71,7 @@ LevelLoader = loaders.TmxLevelLoader
 TEXTURES = {
     "tiles": pygame.image.load(BASE_DIR / "assets" / "textures" / "tileset.png"),
     "martian": pygame.image.load(BASE_DIR / "assets" / "textures" / "martian.png"),
+    "skater": pygame.image.load(BASE_DIR / "assets" / "textures" / "skater_provisional.png"),
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
     "key-gold": pygame.image.load(BASE_DIR / "assets" / "textures" / "key-gold.png"),
 }
@@ -64,6 +79,7 @@ TEXTURES = {
 FRAMES = {
     "tiles": frames.generate_frames(TEXTURES["tiles"], 16, 16),
     "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
+    "skater": frames.generate_frames(TEXTURES["skater"], 18, 31),
     "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
     "key-gold": frames.generate_frames(TEXTURES["key-gold"], 16, 16),
 }

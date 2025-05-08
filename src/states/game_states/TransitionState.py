@@ -14,7 +14,7 @@ from src.GameLevel import GameLevel
 class TransitionState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
         self.level = enter_params.get("level")
-        self.player = enter_params.get("player")
+        self.players = enter_params.get("players")
         self.radius = max(settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)  # Radio inicial del círculo
         self.transitioning = True  # Indica si la transición está activa
 
@@ -22,20 +22,29 @@ class TransitionState(BaseState):
         self.previous_surface = pygame.Surface((settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
         game_level = GameLevel(self.level)
         game_level.render(self.previous_surface)
-        self.player.render(self.previous_surface)
 
+        for player in self.players:
+            player.render(self.previous_surface)
 
         if self.level == 2:
             self.level = 1
-            self.player = None
+            self.players.clear
+            self.players = [None, None]
         else:
             self.level = 2
-            self.player.key = False
-            self.player.x = settings.SPAWN_PLAYER[self.level][0]
-            self.player.y = settings.SPAWN_PLAYER[self.level][1]
-            self.player.vx = 0
-            self.player.vy = 0
-            self.player.change_state("idle")
+            self.players[0].key = False
+            self.players[0].x = settings.SPAWN_PLAYER_1[self.level][0]
+            self.players[0].y = settings.SPAWN_PLAYER_1[self.level][1]
+            self.players[0].vx = 0
+            self.players[0].vy = 0
+            self.players[0].change_state("idle")
+
+            self.players[1].key = False
+            self.players[1].x = settings.SPAWN_PLAYER_2[self.level][0]
+            self.players[1].y = settings.SPAWN_PLAYER_2[self.level][1]
+            self.players[1].vx = 0
+            self.players[1].vy = 0
+            self.players[1].change_state("idle")
 
         pygame.mixer.music.stop()
         pygame.mixer.music.load(
@@ -97,6 +106,6 @@ class TransitionState(BaseState):
             self.state_machine.change(
                 "play",
                 level=self.level,
-                player=self.player,
+                players=self.players,
             )
 

@@ -30,18 +30,35 @@ class WalkState(BaseEntityState):
         self.entity.handle_tilemap_collision_on_right() or self.entity.handle_tilemap_collision_on_left()
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == "move_left":
-            if input_data.pressed:
-                self.entity.vx = -settings.PLAYER_SPEED
-                self.entity.flipped = True
-            elif input_data.released and self.entity.vx <= 0:
-                self.entity.change_state("idle")
+        if self.entity.player_type == 1:
+            if input_id == "move_left":
+                if input_data.pressed:
+                    self.entity.vx = -settings.PLAYER_SPEED
+                    self.entity.flipped = True
+                elif input_data.released and self.entity.vx <= 0:
+                    self.entity.change_state("idle")
 
-        elif input_id == "move_right":
-            if input_data.pressed:
-                self.entity.vx = settings.PLAYER_SPEED
-                self.entity.flipped = False
-            elif input_data.released and self.entity.vx >= 0:
-                self.entity.change_state("idle")
-        elif input_id == "jump" and input_data.pressed:
-            self.entity.change_state("jump")
+            elif input_id == "move_right":
+                if input_data.pressed:
+                    self.entity.vx = settings.PLAYER_SPEED
+                    self.entity.flipped = False
+                elif input_data.released and self.entity.vx >= 0:
+                    self.entity.change_state("idle")
+            elif input_id == "jump" and input_data.pressed:
+                self.entity.change_state("jump")
+        else :
+            if input_id == "move_left_p2":
+                if input_data.pressed:
+                    self.entity.vx = -settings.PLAYER_SPEED
+                    self.entity.flipped = True
+                elif input_data.released and self.entity.vx <= 0:
+                    self.entity.change_state("idle")
+
+            elif input_id == "move_right_p2":
+                if input_data.pressed:
+                    self.entity.vx = settings.PLAYER_SPEED
+                    self.entity.flipped = False
+                elif input_data.released and self.entity.vx >= 0:
+                    self.entity.change_state("idle")
+            elif input_id == "jump_p2" and input_data.pressed:
+                self.entity.change_state("jump")

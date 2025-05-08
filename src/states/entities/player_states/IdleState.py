@@ -24,11 +24,21 @@ class IdleState(BaseEntityState):
             self.entity.vy = 0
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == "move_left" and input_data.pressed:
-            self.entity.flipped = True
-            self.entity.change_state("walk", "left")
-        elif input_id == "move_right" and input_data.pressed:
-            self.entity.flipped = True
-            self.entity.change_state("walk", "right")
-        elif input_id == "jump" and input_data.pressed:
-            self.entity.change_state("jump")
+        if self.entity.player_type == 1:
+            if input_id == "move_left" and input_data.pressed:
+                self.entity.flipped = True
+                self.entity.change_state("walk", "left")
+            elif input_id == "move_right" and input_data.pressed:
+                self.entity.flipped = True
+                self.entity.change_state("walk", "right")
+            elif input_id == "jump" and input_data.pressed:
+                self.entity.change_state("jump")
+        else : 
+            if input_id == "move_left_p2" and input_data.pressed:
+                self.entity.flipped = True
+                self.entity.change_state("walk", "left")
+            elif input_id == "move_right_p2" and input_data.pressed:
+                self.entity.flipped = True
+                self.entity.change_state("walk", "right")
+            elif input_id == "jump_p2" and input_data.pressed:
+                self.entity.change_state("jump")

@@ -25,7 +25,7 @@ class PauseState(BaseState):
         self.camera = enter_params["camera"]
         self.game_level = enter_params["game_level"]
         self.tilemap = self.game_level.tilemap
-        self.player = enter_params["player"]
+        self.players = enter_params["players"]
         self.clock = enter_params["clock"]
         pygame.mixer.music.pause()
 
@@ -35,7 +35,10 @@ class PauseState(BaseState):
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))
         self.game_level.render(world_surface)
-        self.player.render(world_surface)
+
+        for player in self.players:
+            player.render(world_surface)
+
         surface.blit(world_surface, (-self.camera.x, -self.camera.y))
 
         render_text(
@@ -65,6 +68,6 @@ class PauseState(BaseState):
                 level=self.level,
                 camera=self.camera,
                 game_level=self.game_level,
-                player=self.player,
+                players=self.players,
                 clock=self.clock,
             )

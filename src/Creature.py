@@ -17,7 +17,7 @@ class Creature(GameEntity):
     def __init__(
         self,
         x: float,
-        y,
+        y: float,
         width: float,
         height: float,
         game_level: TypeVar("GameLevel"),

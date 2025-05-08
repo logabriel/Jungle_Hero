@@ -18,8 +18,8 @@ import settings
 
 
 class GameOverState(BaseState):
-    def enter(self, player) -> None:
-        self.player = player
+    def enter(self, players) -> None:
+        self.players = players
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "enter" and input_data.pressed:
@@ -41,7 +41,7 @@ class GameOverState(BaseState):
 
         y = 50
 
-        for color, amount in self.player.coins_counter.items():
+        for color, amount in self.players[0].coins_counter.items():
             surface.blit(
                 settings.TEXTURES["tiles"],
                 (settings.VIRTUAL_WIDTH // 2 - 32, y),
@@ -69,7 +69,7 @@ class GameOverState(BaseState):
 
         render_text(
             surface,
-            f"Score: {self.player.score}",
+            f"Score: {self.players[0].score}",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH // 2,
             y + 10,

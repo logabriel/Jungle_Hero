@@ -15,7 +15,7 @@ from gale.state import BaseState, StateMachine
 
 class BaseEntityState(BaseState):
     def __init__(
-        self, entity: TypeVar("GameEntity"), state_machine: StateMachine
+        self, entity: TypeVar("GameEntity"), state_machine: StateMachine # type: ignore
     ) -> None:
         super().__init__(state_machine)
         self.entity = entity
