@@ -44,9 +44,17 @@ class IdleState(BaseEntityState):
         else : 
             if input_id == "move_left_p2" and input_data.pressed:
                 self.entity.flipped = True
+                self.entity.direcction = settings.LEFT 
                 self.entity.change_state("walk", "left")
             elif input_id == "move_right_p2" and input_data.pressed:
                 self.entity.flipped = True
+                self.entity.direcction = settings.RIGHT 
                 self.entity.change_state("walk", "right")
             elif input_id == "jump_p2" and input_data.pressed:
                 self.entity.change_state("jump")
+            elif input_id == "attack_p2" and input_data.pressed:
+                if self.entity.direcction == settings.RIGHT:
+                    self.entity.change_state("attack", "right")
+                else :
+                    self.entity.change_state("attack", "left")
+            

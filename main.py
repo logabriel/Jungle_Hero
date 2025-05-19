@@ -13,7 +13,7 @@ from src.SuperMartian import SuperMartian
 
 if __name__ == "__main__":
     super_martian = SuperMartian(
-        "Super Martian",
+        "Jungle Hero",
         settings.WINDOW_WIDTH,
         settings.WINDOW_HEIGHT,
         settings.VIRTUAL_WIDTH,

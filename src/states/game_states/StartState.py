@@ -22,11 +22,11 @@ import settings
 class StartState(BaseState):
     def arrive(self):
         self.tweening = False
-        self.martian_animation = Animation([settings.FRAMES["martian"][0]])
+        self.martian_animation = Animation([settings.FRAMES["robber"][0]])
 
     def enter(self) -> None:
         self.title = Text(
-            "Super Martian",
+            "Jungle Hero",
             settings.FONTS["medium"],
             settings.VIRTUAL_WIDTH,
             settings.VIRTUAL_HEIGHT // 4,
@@ -36,8 +36,8 @@ class StartState(BaseState):
         self.title_end_x = settings.VIRTUAL_WIDTH // 2 - self.title.rect.width // 2
         self.martian_x = -16
         self.martian_end_x = settings.VIRTUAL_WIDTH // 2 - 8
-        self.martian_texture = settings.TEXTURES["martian"]
-        self.martian_animation = Animation(settings.FRAMES["martian"][9:], 0.15)
+        self.martian_texture = settings.TEXTURES["robber"]
+        self.martian_animation = Animation(settings.FRAMES["robber"][4:9], 0.15)
 
         self.tweening = True
 

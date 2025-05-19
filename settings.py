@@ -38,7 +38,7 @@ input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP6, "move_righ
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP4, "move_left_p2")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP8, "move_up_p2")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP5, "move_down_p2")
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP7, "accion_p2")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP7, "attack_p2")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP0, "jump_p2")
 
 # Size we want to emulate
@@ -77,7 +77,7 @@ LevelLoader = loaders.TmxLevelLoader
 
 TEXTURES = {
     "tiles": pygame.image.load(BASE_DIR / "assets" / "textures" / "tileset.png"),
-    "martian": pygame.image.load(BASE_DIR / "assets" / "textures" / "martian.png"),
+    "steamMan": pygame.image.load(BASE_DIR / "assets" / "textures" / "SteamMan.png"),
     "robber": pygame.image.load(BASE_DIR / "assets" / "textures" / "GraveRobber.png"),
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
     "key-gold": pygame.image.load(BASE_DIR / "assets" / "textures" / "key-gold.png"),
@@ -85,7 +85,7 @@ TEXTURES = {
 
 FRAMES = {
     "tiles": frames.generate_frames(TEXTURES["tiles"], 32, 32),
-    "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
+    "steamMan": frames.generate_frames(TEXTURES["steamMan"], 31, 37),
     "robber": frames.generate_frames(TEXTURES["robber"], 28, 43),
     "creatures": frames.generate_frames(TEXTURES["creatures"], 48, 33),
     "key-gold": frames.generate_frames(TEXTURES["key-gold"], 16, 16),
