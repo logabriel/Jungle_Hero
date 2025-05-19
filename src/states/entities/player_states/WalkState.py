@@ -35,6 +35,7 @@ class WalkState(BaseEntityState):
                 if input_data.pressed:
                     self.entity.vx = -settings.PLAYER_SPEED
                     self.entity.flipped = True
+                    self.entity.direcction = settings.LEFT 
                 elif input_data.released and self.entity.vx <= 0:
                     self.entity.change_state("idle")
 
@@ -42,10 +43,16 @@ class WalkState(BaseEntityState):
                 if input_data.pressed:
                     self.entity.vx = settings.PLAYER_SPEED
                     self.entity.flipped = False
+                    self.entity.direcction = settings.RIGHT 
                 elif input_data.released and self.entity.vx >= 0:
                     self.entity.change_state("idle")
             elif input_id == "jump" and input_data.pressed:
                 self.entity.change_state("jump")
+            elif input_id == "attack":
+                if self.entity.direcction == settings.RIGHT:
+                    self.entity.change_state("attack", "right")
+                else :
+                    self.entity.change_state("attack", "left")
         else :
             if input_id == "move_left_p2":
                 if input_data.pressed:

@@ -29,8 +29,9 @@ input_handler.InputHandler.set_keyboard_action(input_handler.KEY_d, "move_right"
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_a, "move_left")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_w, "move_up")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_s, "move_down")
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_e, "accion")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_e, "attack")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_SPACE, "jump")
+
 
 # Player 2
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP6, "move_right_p2")
@@ -55,6 +56,10 @@ GRAVITY = 980
 NUM_LEVELS = 3
 
 BASE_DIR = pathlib.Path(__file__).parent
+
+# player direction
+RIGHT = 0
+LEFT = 1
 
 # The spawn position of the player in each level
 SPAWN_PLAYER_1 = {

@@ -34,11 +34,13 @@ class Player(GameEntity):
                     "jump": lambda sm: player_states.JumpState(self, sm),
                     "fall": lambda sm: player_states.FallState(self, sm),
                     "dead": lambda sm: player_states.DeadState(self, sm),
+                    "attack": lambda sm: player_states.AttackState(self, sm),
                 },
                 animation_defs={
                     "idle": {"frames": [0, 1, 2], "interval": 0.15},
                     "walk": {"frames": [4, 5, 6, 7, 8, 9], "interval": 0.15},
                     "jump": {"frames": [10, 11, 12, 13, 14, 15], "interval": 0.15},
+                    "attack": {"frames": [17, 18, 19, 20, 21], "interval": 0.15}
                 },
             )
         else:
@@ -66,6 +68,7 @@ class Player(GameEntity):
         self.coins_counter = {54: 0, 55: 0, 61: 0, 62: 0}
         self.key = False
         self.player_type = player_type
+        self.direcction = settings.RIGHT
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.state_machine.on_input(input_id, input_data)

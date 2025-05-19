@@ -1,25 +1,23 @@
 """
-ISPPJ1 2024
-Study Case: Super Martian (Platformer)
-
-Author: Alejandro Mujica
-alejandro.j.mujic4@gmail.com
-
-This file contains the class IdleState for player.
+This file contains the class AttackState for player.
 """
 
 from gale.input_handler import InputData
+from gale.timer import Timer
 
 from src.states.entities.BaseEntityState import BaseEntityState
+
 import settings
 
-
-class IdleState(BaseEntityState):
-    def enter(self) -> None:
+class AttackState(BaseEntityState):
+    def enter(self, direction: str) -> None:
+        self.entity.flipped = direction == "left"
         self.entity.vx = 0
         self.entity.vy = 0
-        self.entity.change_animation("idle")
+        self.entity.change_animation("attack")
 
+        Timer.after(0.75, lambda: self.entity.change_state("idle"),)
+        
     def update(self, dt: float) -> None:
         if self.entity.handle_tilemap_collision_on_bottom():
             self.entity.vy = 0
@@ -28,19 +26,14 @@ class IdleState(BaseEntityState):
         if self.entity.player_type == 1:
             if input_id == "move_left" and input_data.pressed:
                 self.entity.flipped = True
-                self.entity.direcction = settings.LEFT 
+                self.entity.direcction = settings.LEFT
                 self.entity.change_state("walk", "left")
             elif input_id == "move_right" and input_data.pressed:
                 self.entity.flipped = True
-                self.entity.direcction = settings.RIGHT 
+                self.entity.direcction = settings.RIGHT
                 self.entity.change_state("walk", "right")
             elif input_id == "jump" and input_data.pressed:
                 self.entity.change_state("jump")
-            elif input_id == "attack" and input_data.pressed:
-                if self.entity.direcction == settings.RIGHT:
-                    self.entity.change_state("attack", "right")
-                else :
-                    self.entity.change_state("attack", "left")
         else : 
             if input_id == "move_left_p2" and input_data.pressed:
                 self.entity.flipped = True
