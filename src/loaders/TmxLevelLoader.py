@@ -14,6 +14,8 @@ from typing import Any
 
 from src.Tilemap import Tilemap
 
+HIENA = 16
+ESCORPION = 64
 
 class TmxLevelLoader:
     FILE_EXT = "tmx"

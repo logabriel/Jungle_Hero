@@ -12,18 +12,45 @@ from typing import Dict, Any
 
 from src.states.entities import creatures_states
 
+SNAKE = 0
+HIENA = 16
+WHITE_HUMAN = 32
+AXE_HUMAN = 63
+SCORPION = 64
+
 CREATURES: Dict[int, Dict[str, Any]] = {
-    48: {
+    SNAKE: {
         "texture_id": "creatures",
-        "walk_speed": 10,
-        "animation_defs": {"walk": {"frames": [48, 49], "interval": 0.25}},
+        "walk_speed": 8,
+        "animation_defs": {"walk": {"frames": [4, 5, 6, 7, 8, 9], "interval": 0.30}},
         "states": {"walk": creatures_states.SnailWalkState},
         "first_state": "walk",
     },
-    52: {
+    HIENA: {
         "texture_id": "creatures",
-        "walk_speed": 15,
-        "animation_defs": {"walk": {"frames": [52, 53], "interval": 0.18}},
+        "walk_speed": 24,
+        "animation_defs": {"walk": {"frames": [19, 20, 21, 22, 23, 24, 25], "interval": 0.18}},
+        "states": {"walk": creatures_states.SnailWalkState},
+        "first_state": "walk",
+    },
+    WHITE_HUMAN: {
+        "texture_id": "creatures",
+        "walk_speed": 12,
+        "animation_defs": {"walk": {"frames": [36, 37, 38, 39, 40, 41], "interval": 0.28}},
+        "states": {"walk": creatures_states.SnailWalkState},
+        "first_state": "walk",
+    },
+    AXE_HUMAN: {
+        "texture_id": "creatures",
+        "walk_speed": 14,
+        "animation_defs": {"walk": {"frames": [60, 59, 58, 57, 56], "interval": 0.32}},
+        "states": {"walk": creatures_states.SnailWalkState},
+        "first_state": "walk",
+    },
+    SCORPION: {
+        "texture_id": "creatures",
+        "walk_speed": 6,
+        "animation_defs": {"walk": {"frames": [67, 68, 69, 70, 71, 72, 73], "interval": 0.30}},
         "states": {"walk": creatures_states.SnailWalkState},
         "first_state": "walk",
     },

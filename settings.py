@@ -87,7 +87,7 @@ FRAMES = {
     "tiles": frames.generate_frames(TEXTURES["tiles"], 32, 32),
     "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
     "robber": frames.generate_frames(TEXTURES["robber"], 28, 43),
-    "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
+    "creatures": frames.generate_frames(TEXTURES["creatures"], 48, 33),
     "key-gold": frames.generate_frames(TEXTURES["key-gold"], 16, 16),
 }
 
