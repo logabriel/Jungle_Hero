@@ -52,7 +52,7 @@ class TmxLevelLoader:
             ]
             for i in range(self.height):
                 line = [s for s in data[i].split(",") if len(s) > 0]
-                for j in range(self.width):
+                for j in range(self.width):                  
                     frame_index = int(line[j]) - self.first_ids["tiles"]
                     tilemap.set_new_tile(i, j, frame_index)
 

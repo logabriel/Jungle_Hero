@@ -20,7 +20,7 @@ class Creature(GameEntity):
         y: float,
         width: float,
         height: float,
-        game_level: TypeVar("GameLevel"),
+        game_level: TypeVar("GameLevel"), # type: ignore
         **definition
     ) -> None:
         super().__init__(

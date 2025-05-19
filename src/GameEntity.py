@@ -25,7 +25,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         width: float,
         height: float,
         texture_id: str,
-        game_level: TypeVar("GameLevel"),
+        game_level: TypeVar("GameLevel"), # type: ignore
         states: Dict[str, BaseState],
         animation_defs: Dict[str, Dict[str, Any]],
     ) -> None:

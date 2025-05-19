@@ -29,7 +29,7 @@ from src.definitions import tiles
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level", 1)
+        self.level = enter_params.get("level", 3)
         self.game_level = enter_params.get("game_level")
         (self.spanw_player_1_x , self.spawn_player_1_y) = settings.SPAWN_PLAYER_1[self.level]
         (self.spanw_player_2_x , self.spawn_player_2_y) = settings.SPAWN_PLAYER_2[self.level]

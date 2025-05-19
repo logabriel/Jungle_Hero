@@ -52,7 +52,7 @@ PLAYER_SPEED = 80
 
 GRAVITY = 980
 
-NUM_LEVELS = 2
+NUM_LEVELS = 3
 
 BASE_DIR = pathlib.Path(__file__).parent
 
@@ -60,10 +60,12 @@ BASE_DIR = pathlib.Path(__file__).parent
 SPAWN_PLAYER_1 = {
     1: (0, VIRTUAL_HEIGHT - 66),
     2: (0, VIRTUAL_HEIGHT - 80),
+    3: (0, VIRTUAL_HEIGHT - 66),
 }
 SPAWN_PLAYER_2 = {
     1: (0, VIRTUAL_HEIGHT - 66),
     2: (0, VIRTUAL_HEIGHT - 80),
+    3: (0, VIRTUAL_HEIGHT - 66),
 }
 
 LevelLoader = loaders.TmxLevelLoader
@@ -71,15 +73,15 @@ LevelLoader = loaders.TmxLevelLoader
 TEXTURES = {
     "tiles": pygame.image.load(BASE_DIR / "assets" / "textures" / "tileset.png"),
     "martian": pygame.image.load(BASE_DIR / "assets" / "textures" / "martian.png"),
-    "skater": pygame.image.load(BASE_DIR / "assets" / "textures" / "skater_provisional.png"),
+    "robber": pygame.image.load(BASE_DIR / "assets" / "textures" / "GraveRobber.png"),
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
     "key-gold": pygame.image.load(BASE_DIR / "assets" / "textures" / "key-gold.png"),
 }
 
 FRAMES = {
-    "tiles": frames.generate_frames(TEXTURES["tiles"], 16, 16),
+    "tiles": frames.generate_frames(TEXTURES["tiles"], 32, 32),
     "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
-    "skater": frames.generate_frames(TEXTURES["skater"], 18, 31),
+    "robber": frames.generate_frames(TEXTURES["robber"], 28, 43),
     "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
     "key-gold": frames.generate_frames(TEXTURES["key-gold"], 16, 16),
 }
