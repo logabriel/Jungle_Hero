@@ -19,6 +19,8 @@ class TransitionState(BaseState):
 
         if self.level > settings.NUM_LEVELS:
             self.level = 1
+            pygame.mixer.music.stop()
+            pygame.mixer.music.unload()
             self.state_machine.change("win", players=self.players)
 
         self.radius = max(settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)  
@@ -36,12 +38,6 @@ class TransitionState(BaseState):
             player.x = self.definition.get("position_player1_x")
             player.y = self.definition.get("position_player1_y")
 
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load(
-            settings.BASE_DIR / "assets" / "sounds" / "music_intro.ogg"
-        )
-        pygame.mixer.music.play()
-    
     def update(self, dt: float) -> None:
         if self.transitioning:
             self.radius -= 300 * dt 

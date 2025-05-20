@@ -28,6 +28,7 @@ class Player(GameEntity):
                 42,
                 "robber", 
                 game_level,
+                sound="hit_bowie",
                 states={
                     "idle": lambda sm: player_states.IdleState(self, sm),
                     "walk": lambda sm: player_states.WalkState(self, sm),
@@ -51,6 +52,7 @@ class Player(GameEntity):
                 37,
                 "steamMan",
                 game_level,
+                sound="hit_bowie",
                 states={
                     "idle": lambda sm: player_states.IdleState(self, sm),
                     "walk": lambda sm: player_states.WalkState(self, sm),

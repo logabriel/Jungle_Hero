@@ -38,10 +38,11 @@ class PlayState(BaseState):
 
         if self.game_level is None:
             self.game_level = GameLevel(self.level)
-            pygame.mixer.music.load(
-                settings.BASE_DIR / "assets" / "sounds" / "music_grassland.ogg"
-            )
-            pygame.mixer.music.play(loops=-1)
+            if not pygame.mixer.music.get_busy():
+                pygame.mixer.music.load(
+                    settings.BASE_DIR / "assets" / "sounds" / "play_game.ogg"
+                )
+                pygame.mixer.music.play(loops=-1)
 
         self.tilemap = self.game_level.tilemap
         
@@ -131,19 +132,8 @@ class PlayState(BaseState):
 
             if player.girl_save == self.game_level.girls_to_rescue: #change next level
                 self.game_level.winNextLevel = True
-
                 player.score = 0
-
-                pygame.mixer.music.stop()
-                settings.SOUNDS["win"].stop()
-                settings.SOUNDS["win"].play()
-
                 Timer.clear()
-
-                for item in self.game_level.items:
-                    if not item.frame_index == "Key-gold":
-                        item.active = False
-
                 self.state_machine.change("transition", players=self.players, level=self.level)             
 
     def render(self, surface: pygame.Surface) -> None:

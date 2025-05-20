@@ -103,13 +103,19 @@ TILEMAPS = {
 pygame.mixer.init()
 
 SOUNDS = {
-    "pickup_coin": pygame.mixer.Sound(
-        BASE_DIR / "assets" / "sounds" / "pickup_coin.wav"
-    ),
+    "pickup_coin": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "pickup_coin.wav"),
     "jump": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "jump.wav"),
     "timer": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "timer.wav"),
     "count": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "count.wav"),
     "win": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "winfretless.wav"),
+    "hit_bowie": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "hit_bowie.wav"),
+    "bug_crash": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "bug_crash.wav"),
+    "hyena_dead": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "hyena_dead.wav"),
+    "man_dead_1": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "man_dead_1.wav"),
+    "man_dead_2": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "man_dead_2.wav"),
+    "snake_dead": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "snake_dead.wav"),
+    "scorpion_dead": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "scorpion_dead.wav"),
+    "kiss": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "kiss.wav"),
 }
 
 SOUNDS["pickup_coin"].set_volume(0.5)

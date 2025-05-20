@@ -8,7 +8,15 @@ import settings
 
 class WinState(BaseState):
     def enter(self, players) -> None:
+        pygame.mixer.music.load(
+            settings.BASE_DIR / "assets" / "sounds" / "victory.ogg"
+        )
+        pygame.mixer.music.play(start=3.0)
         self.players = players
+
+    def exit(self) -> None:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.unload()
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "enter" and input_data.pressed:

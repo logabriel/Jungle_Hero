@@ -35,6 +35,7 @@ class Creature(GameEntity):
                 for state_name, state_class in definition["states"].items()
             },
             animation_defs=definition["animation_defs"],
+            sound=definition["sound"],
         )
         self.walk_speed = definition["walk_speed"]
         self.state_machine.change(definition["first_state"], self.flipped)

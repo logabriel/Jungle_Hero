@@ -12,6 +12,8 @@ import settings
 
 class AttackState(BaseEntityState):
     def enter(self, direction: str) -> None:
+        self.entity.play_characteristic_sound() #reproduce su sonido caracteristico
+
         self.entity.flipped = direction == "left"
         self.entity.vx = 0
         self.entity.vy = 0
@@ -37,6 +39,7 @@ class AttackState(BaseEntityState):
         
         for entity in self.entity.game_level.creatures:
             if entity.collides(self.swordHitbox):
+                entity.play_characteristic_sound()
                 entity.is_dead = True
 
     def on_input(self, input_id: str, input_data: InputData) -> None:

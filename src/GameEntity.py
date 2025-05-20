@@ -28,6 +28,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         game_level: TypeVar("GameLevel"), # type: ignore
         states: Dict[str, BaseState],
         animation_defs: Dict[str, Dict[str, Any]],
+        sound: str
     ) -> None:
         self.x = x
         self.y = y
@@ -45,6 +46,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         self.generate_animations(animation_defs)
         self.flipped = False
         self.is_dead = False
+        self.sound = sound
 
     def change_state(
         self, state_id: str, *args: Tuple[Any], **kwargs: Dict[str, Any]
@@ -151,3 +153,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         return self.tilemap.check_solidness_on(
             i + 1, left, GameObject.TOP
         ) or self.tilemap.check_solidness_on(i + 1, right, GameObject.TOP)
+    
+    def play_characteristic_sound(self):
+        settings.SOUNDS[self.sound].stop()
+        settings.SOUNDS[self.sound].play()

@@ -53,8 +53,8 @@ def block_active(active_block: GameItem, player: Player):
     pass
 
 def pickup_girl(girl: GameItem, player: Player):
-    #settings.SOUNDS["girl_save"].stop()
-    #settings.SOUNDS["girl_save"].play()
+    settings.SOUNDS["kiss"].stop()
+    settings.SOUNDS["kiss"].play()
     player.girl_save += 1 
     player.girl_save_total += 1
 
