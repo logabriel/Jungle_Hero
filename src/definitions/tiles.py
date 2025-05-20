@@ -21,6 +21,7 @@ TILES: Dict[int, Dict[str, Any]] = {
     8: {"solidness": dict(top=True, right=False, bottom=False, left=False)},
     9: {"solidness": dict(top=False, right=False, bottom=False, left=False)},
     11: {"solidness": dict(top=False, right=False, bottom=False, left=True)},
+    12: {"solidness": dict(top=False, right=False, bottom=False, left=False)},
     13: {"solidness": dict(top=False, right=True, bottom=False, left=False)},
     14: {"solidness": dict(top=False, right=True, bottom=False, left=False)},
     16: {"solidness": dict(top=False, right=False, bottom=False, left=True)},
