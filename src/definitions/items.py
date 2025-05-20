@@ -52,6 +52,8 @@ def pickup_key(keys: GameItem, player: Player):
 def block_active(active_block: GameItem, player: Player):
     pass
 
+def pickup_girl(girl: GameItem, player: Player):
+    print("chica rescatada")
 
 ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
     "coins": {
@@ -82,6 +84,15 @@ ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
             "consumable": True,
             "collidable": True,
             "on_consume": pickup_yellow_coin,
+        },
+    },
+    "girls":{
+        0: {
+            "texture_id": "girl",
+            "solidness": dict(top=False, right=False, bottom=False, left=False),
+            "consumable": True,
+            "collidable": False, 
+            "on_consume": pickup_girl,
         },
     },
     "active-block": {

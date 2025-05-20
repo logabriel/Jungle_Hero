@@ -80,6 +80,7 @@ TEXTURES = {
     "steamMan": pygame.image.load(BASE_DIR / "assets" / "textures" / "SteamMan.png"),
     "robber": pygame.image.load(BASE_DIR / "assets" / "textures" / "GraveRobber.png"),
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
+    "girl": pygame.image.load(BASE_DIR / "assets" / "textures" / "Girl_Idle.png"),
     "key-gold": pygame.image.load(BASE_DIR / "assets" / "textures" / "key-gold.png"),
 }
 
@@ -88,6 +89,7 @@ FRAMES = {
     "steamMan": frames.generate_frames(TEXTURES["steamMan"], 31, 37),
     "robber": frames.generate_frames(TEXTURES["robber"], 28, 43),
     "creatures": frames.generate_frames(TEXTURES["creatures"], 48, 33),
+    "girl": frames.generate_frames(TEXTURES["girl"], 18, 33),
     "key-gold": frames.generate_frames(TEXTURES["key-gold"], 16, 16),
 }
 

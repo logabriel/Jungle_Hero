@@ -73,12 +73,9 @@ class TmxLevelLoader:
                     if value == 0:
                         continue
                     
-                    if  1 <= value < 78: 
+                    if  1 <= value < 371: 
                         frame_index = value - self.first_ids["tiles"]
-                    elif value >= 134:
-                        frame_index = value - self.first_ids["key-gold"]
-
-                    level.add_item(
+                        level.add_item(
                         {
                             "item_name": item_name,
                             "frame_index": frame_index,
@@ -88,6 +85,20 @@ class TmxLevelLoader:
                             "height": self.tileheight,
                         }
                     )
+                    elif value >= 411:
+                        frame_index = value - self.first_ids["Girl_Idle"]
+                        level.add_item(
+                        {
+                            "item_name": item_name,
+                            "frame_index": frame_index,
+                            "x": j * self.tilewidth,
+                            "y": i * self.tileheight,
+                            "width": self.tilewidth,
+                            "height": self.tileheight,
+                        }
+                    )
+
+                    
 
     def load_creatures(self, level: Any, group: ET.Element) -> None:
         layer = group.find("layer")
