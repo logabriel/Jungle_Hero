@@ -1,13 +1,3 @@
-"""
-ISPPJ1 2024
-Study Case: Super Martian (Platformer)
-
-Author: Alejandro Mujica
-alejandro.j.mujic4@gmail.com
-
-This file contains the class GameOverState.
-"""
-
 import pygame
 
 from gale.input_handler import InputData
@@ -16,8 +6,7 @@ from gale.text import render_text
 
 import settings
 
-
-class GameOverState(BaseState):
+class WinState(BaseState):
     def enter(self, players) -> None:
         self.players = players
 
@@ -26,17 +15,7 @@ class GameOverState(BaseState):
             self.state_machine.change("start")
 
     def render(self, surface: pygame.Surface) -> None:
-        blue_bg = settings.TEXTURES["blue_bg"]
-        jungle_bg = settings.TEXTURES["game_over_bg"]
-
-        surface.blit(
-            pygame.transform.scale(
-                blue_bg,
-                (settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
-            ),
-            (0, 0)
-        )
-        
+        jungle_bg = settings.TEXTURES["jungle_bg"]
         surface.blit(
             pygame.transform.scale(
                 jungle_bg,
@@ -47,34 +26,21 @@ class GameOverState(BaseState):
 
         render_text(
             surface,
-            "Game Over!",
-            settings.FONTS["medium"],
+            "You won, congratulations, you are a hero!",
+            settings.FONTS["small"],
             settings.VIRTUAL_WIDTH // 2,
-            20,
+            40,
             (255, 255, 255),
             center=True,
             shadowed=True,
         )
 
-        y = 50
-
         render_text(
             surface,
-            f"total number of girls rescued: {self.players[0].girl_save_total}",
+            "Press enter to start",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH // 2,
-            y + 10,
-            (255, 255, 255),
-            shadowed=True,
-            center=True,
-        )
-
-        render_text(
-            surface,
-            "Press Enter to play again",
-            settings.FONTS["small"],
-            settings.VIRTUAL_WIDTH // 2,
-            settings.VIRTUAL_HEIGHT - 20,
+            settings.VIRTUAL_HEIGHT - 40,
             (255, 255, 255),
             center=True,
             shadowed=True,

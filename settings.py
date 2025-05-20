@@ -82,6 +82,9 @@ TEXTURES = {
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
     "girl": pygame.image.load(BASE_DIR / "assets" / "textures" / "Girl_Idle.png"),
     "key-gold": pygame.image.load(BASE_DIR / "assets" / "textures" / "key-gold.png"),
+    "jungle_bg": pygame.image.load(BASE_DIR / "assets" / "textures" / "Background.png"),
+    "game_over_bg": pygame.image.load(BASE_DIR / "assets" / "textures" / "game_over_bg.png"),
+    "blue_bg": pygame.image.load(BASE_DIR / "assets" / "textures" / "Blue_bg.png"),
 }
 
 FRAMES = {

@@ -15,8 +15,7 @@ import pygame
 import settings
 from src.Creature import Creature
 from src.GameItem import GameItem
-from src.definitions import creatures, items
-
+from src.definitions import creatures, items, level
 
 class GameLevel:
     def __init__(self, num_level: int) -> None:
@@ -25,6 +24,8 @@ class GameLevel:
         self.items = []
         settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
         self.winNextLevel = False
+        self.definition = level.LEVEL[num_level]
+        self.girls_to_rescue = self.definition.get("girls_to_rescue")
 
     def add_item(self, item_data: Dict[str, Any]) -> None:
         item_name = item_data.pop("item_name")

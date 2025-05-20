@@ -10,41 +10,31 @@ from gale.timer import Timer
 import settings
 from src.Player import Player
 from src.GameLevel import GameLevel
+from src.definitions import level
 
 class TransitionState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level")
+        self.level = enter_params.get("level") + 1
         self.players = enter_params.get("players")
-        self.radius = max(settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)  # Radio inicial del círculo
-        self.transitioning = True  # Indica si la transición está activa
 
-        # Crear una superficie temporal para capturar el estado previo
+        if self.level > settings.NUM_LEVELS:
+            self.level = 1
+            self.state_machine.change("win", players=self.players)
+
+        self.radius = max(settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)  
+        self.transitioning = True 
+        self.definition = level.LEVEL[self.level]
         self.previous_surface = pygame.Surface((settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
         game_level = GameLevel(self.level)
         game_level.render(self.previous_surface)
-
+        
         for player in self.players:
             player.render(self.previous_surface)
-
-        if self.level == 2:
-            self.level = 1
-            self.players.clear
-            self.players = [None, None]
-        else:
-            self.level = 2
-            self.players[0].key = False
-            self.players[0].x = settings.SPAWN_PLAYER_1[self.level][0]
-            self.players[0].y = settings.SPAWN_PLAYER_1[self.level][1]
-            self.players[0].vx = 0
-            self.players[0].vy = 0
-            self.players[0].change_state("idle")
-
-            self.players[1].key = False
-            self.players[1].x = settings.SPAWN_PLAYER_2[self.level][0]
-            self.players[1].y = settings.SPAWN_PLAYER_2[self.level][1]
-            self.players[1].vx = 0
-            self.players[1].vy = 0
-            self.players[1].change_state("idle")
+            player.girl_save = 0
+            player.vx = 0
+            player.vy = 0
+            player.x = self.definition.get("position_player1_x")
+            player.y = self.definition.get("position_player1_y")
 
         pygame.mixer.music.stop()
         pygame.mixer.music.load(
@@ -54,32 +44,29 @@ class TransitionState(BaseState):
     
     def update(self, dt: float) -> None:
         if self.transitioning:
-            self.radius -= 300 * dt  # Reducir el radio gradualmente
+            self.radius -= 300 * dt 
             if self.radius <= 0:
-                self.transitioning = False  # Finalizar la transición
+                self.transitioning = False  
 
     def render(self, surface: pygame.Surface) -> None:
         if self.transitioning:
-            # Dibujar el estado previo en la superficie principal
+            
             surface.blit(self.previous_surface, (0, 0))
 
-            # Crear una superficie temporal con transparencia
+            
             mask_surface = pygame.Surface((settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT), pygame.SRCALPHA)
-            mask_surface.fill((0, 0, 0, 255))  # Fondo negro opaco
+            mask_surface.fill((0, 0, 0, 255))  
 
-            # Dibujar un círculo transparente en el centro
             pygame.draw.circle(
                 mask_surface,
-                (0, 0, 0, 0),  # Transparente
+                (0, 0, 0, 0),  
                 (settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2),
                 max(0, int(self.radius)),
             )
 
-            # Aplicar la máscara a la superficie principal
             surface.blit(mask_surface, (0, 0))
         else:
-            # Fondo negro y texto del siguiente nivel
-            surface.fill((0, 0, 0))  # Fondo negro
+            surface.fill((0, 0, 0)) 
             render_text(
                 surface,
                 f"Next level {self.level}",

@@ -53,7 +53,10 @@ def block_active(active_block: GameItem, player: Player):
     pass
 
 def pickup_girl(girl: GameItem, player: Player):
-    print("chica rescatada")
+    #settings.SOUNDS["girl_save"].stop()
+    #settings.SOUNDS["girl_save"].play()
+    player.girl_save += 1 
+    player.girl_save_total += 1
 
 ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
     "coins": {
@@ -91,7 +94,7 @@ ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
             "texture_id": "girl",
             "solidness": dict(top=False, right=False, bottom=False, left=False),
             "consumable": True,
-            "collidable": False, 
+            "collidable": True, 
             "on_consume": pickup_girl,
         },
     },

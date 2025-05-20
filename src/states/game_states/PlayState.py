@@ -24,15 +24,17 @@ from src.GameLevel import GameLevel
 from src.Player import Player
 from src.GameItem import GameItem
 from src.Tile import Tile
-from src.definitions import tiles
-
+from src.definitions import tiles, level
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level", 3)
+        self.level = enter_params.get("level", 1)
         self.game_level = enter_params.get("game_level")
-        (self.spanw_player_1_x , self.spawn_player_1_y) = settings.SPAWN_PLAYER_1[self.level]
-        (self.spanw_player_2_x , self.spawn_player_2_y) = settings.SPAWN_PLAYER_2[self.level]
+        self.definition = level.LEVEL[self.level]
+        self.spanw_player_1_x = self.definition.get("position_player1_x", 0)
+        self.spawn_player_1_y = self.definition.get("position_player1_y", 0)
+        self.spanw_player_2_x = self.definition.get("position_player2_x", 0)
+        self.spawn_player_2_y = self.definition.get("position_player2_y", 0)
 
         if self.game_level is None:
             self.game_level = GameLevel(self.level)
@@ -127,7 +129,7 @@ class PlayState(BaseState):
                     item.on_collide(player)
                     item.on_consume(player)
 
-            if player.score >= self.score_next_level:
+            if player.girl_save == self.game_level.girls_to_rescue: #change next level
                 self.game_level.winNextLevel = True
 
                 player.score = 0
@@ -142,25 +144,7 @@ class PlayState(BaseState):
                     if not item.frame_index == "Key-gold":
                         item.active = False
 
-                self.itemBLock.active = True
-                self.itemKey.active = True
-                self.generate_item_block()
-
-            if self.game_level.winNextLevel:
-                if self.itemBLock.collides_on(player, GameItem.BOTTOM) and player.collision_on_top():
-                    if not self.itemKey.consumable:
-                        def arrive():
-                            self.itemKey.consumable = True
-                        Timer.tween(
-                            1,
-                            [ (self.itemKey, {"y": self.itemKey.y - 16})],
-                            on_finish=arrive,
-                        )
-
-            if player.key: #change next level
-                self.state_machine.change("transition", 
-                                          players=self.players,
-                                          level=self.level),
+                self.state_machine.change("transition", players=self.players, level=self.level)             
 
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))
