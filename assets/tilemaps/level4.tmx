@@ -125,7 +125,7 @@
 </data>
   </layer>
  </group>
- <group id="3" name="creatures">
+ <group id="3" name="creatures" visible="0">
   <layer id="8" name="creatures" width="50" height="36">
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

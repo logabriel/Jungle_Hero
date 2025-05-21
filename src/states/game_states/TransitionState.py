@@ -18,7 +18,7 @@ class TransitionState(BaseState):
         self.players = enter_params.get("players")
 
         if self.level > settings.NUM_LEVELS:
-            self.level = 1
+            self.level = 2
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
             self.state_machine.change("win", players=self.players)

@@ -28,7 +28,7 @@ from src.definitions import tiles, level
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level", 3)
+        self.level = enter_params.get("level", 1)
         self.game_level = enter_params.get("game_level")
         self.definition = level.LEVEL[self.level]
         self.spanw_player_1_x = self.definition.get("position_player1_x", 0)
