@@ -4,33 +4,33 @@ from typing import Dict, Any
 LEVEL: Dict[int, Dict[str, Any]] = {
     1: {
         "position_player1_x": 0,
-        "position_player1_y": settings.VIRTUAL_HEIGHT - 66,
+        "position_player1_y": 32 * 3,
         "position_player2_x": 0,
-        "position_player2_y": settings.VIRTUAL_HEIGHT - 66,
+        "position_player2_y": 32 * 3,
         "girls_to_rescue": 2,
         "time_play": 120
     },
     2: {
-        "position_player1_x": 0,
-        "position_player1_y": settings.VIRTUAL_HEIGHT - 66,
-        "position_player2_x": 0,
-        "position_player2_y": settings.VIRTUAL_HEIGHT - 66,
+        "position_player1_x": 32 * 48,
+        "position_player1_y": 32 * 34,
+        "position_player2_x": 32 * 48,
+        "position_player2_y": 32 * 34,
         "girls_to_rescue": 2,
         "time_play": 180
     },
     3: {
-        "position_player1_x": 0,
-        "position_player1_y": settings.VIRTUAL_HEIGHT - 66,
-        "position_player2_x": 0,
-        "position_player2_y": settings.VIRTUAL_HEIGHT - 66,
+        "position_player1_x": 32 * 23,
+        "position_player1_y": 14 * 32,
+        "position_player2_x": 32 * 23,
+        "position_player2_y": 14 * 32,
         "girls_to_rescue": 3,
         "time_play": 180
     },
     4: {
         "position_player1_x": 0,
-        "position_player1_y": 160,
+        "position_player1_y": 32 * 34,
         "position_player2_x": 0,
-        "position_player2_y": 160,
+        "position_player2_y": 32 * 34,
         "girls_to_rescue": 4,
         "time_play": 180 #en segundos
     },
