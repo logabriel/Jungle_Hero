@@ -19,6 +19,8 @@ from src.GameItem import GameItem
 import settings
 
 class Player(GameEntity):
+    girl_save = 0
+    girl_save_total = 0
     def __init__(self, x: int, y: int, player_type: int, game_level: TypeVar("GameLevel")) -> None: # type: ignore
         if player_type == 1:
             super().__init__(
@@ -73,9 +75,6 @@ class Player(GameEntity):
         self.key = False
         self.player_type = player_type
         self.direcction = settings.RIGHT
-        self.girl_save = 0
-        self.girl_save_total = 0
-        self.time_total = 0
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.state_machine.on_input(input_id, input_data)

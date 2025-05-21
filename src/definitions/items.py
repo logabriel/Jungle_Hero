@@ -55,8 +55,8 @@ def block_active(active_block: GameItem, player: Player):
 def pickup_girl(girl: GameItem, player: Player):
     settings.SOUNDS["kiss"].stop()
     settings.SOUNDS["kiss"].play()
-    player.girl_save += 1 
-    player.girl_save_total += 1
+    Player.girl_save += 1 
+    Player.girl_save_total += 1
 
 ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
     "coins": {

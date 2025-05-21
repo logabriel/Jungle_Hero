@@ -28,7 +28,7 @@ from src.definitions import tiles, level
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level", 6)
+        self.level = enter_params.get("level", 1)
         self.game_level = enter_params.get("game_level")
         self.definition = level.LEVEL[self.level]
         self.spanw_player_1_x = self.definition.get("position_player1_x", 0)
@@ -130,7 +130,7 @@ class PlayState(BaseState):
                     item.on_collide(player)
                     item.on_consume(player)
 
-            if player.girl_save == self.game_level.girls_to_rescue: #change next level
+            if Player.girl_save == self.game_level.girls_to_rescue: #change next level
                 self.game_level.winNextLevel = True
                 player.score = 0
                 Timer.clear()
@@ -148,7 +148,7 @@ class PlayState(BaseState):
         # score player 1
         render_text(
             surface,
-            f"girl save: {self.players[0].girl_save}",
+            f"girl save: {Player.girl_save}",
             settings.FONTS["small"],
             5,
             5,

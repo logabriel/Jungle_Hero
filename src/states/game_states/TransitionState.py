@@ -27,12 +27,11 @@ class TransitionState(BaseState):
         self.transitioning = True 
         self.definition = level.LEVEL[self.level]
         self.previous_surface = pygame.Surface((settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
-        game_level = GameLevel(self.level)
-        game_level.render(self.previous_surface)
-        
+        game_level = GameLevel(self.level - 1)
+        game_level.render(self.previous_surface)        
+        Player.girl_save = 0
         for player in self.players:
             player.render(self.previous_surface)
-            player.girl_save = 0
             player.vx = 0
             player.vy = 0
             player.x = self.definition.get("position_player1_x")

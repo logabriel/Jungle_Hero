@@ -13,6 +13,7 @@ import pygame
 from gale.input_handler import InputData
 from gale.state import BaseState
 from gale.text import render_text
+from src.Player import Player
 
 import settings
 
@@ -20,6 +21,9 @@ import settings
 class GameOverState(BaseState):
     def enter(self, players) -> None:
         self.players = players
+
+    def exit(self) -> None:
+        Player.girl_save_total = 0
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "enter" and input_data.pressed:
@@ -60,7 +64,7 @@ class GameOverState(BaseState):
 
         render_text(
             surface,
-            f"total number of girls rescued: {self.players[0].girl_save_total}",
+            f"total number of girls rescued: {Player.girl_save_total}",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH // 2,
             y + 10,
