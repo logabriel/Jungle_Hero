@@ -28,7 +28,7 @@ from src.definitions import tiles, level
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params.get("level", 1)
+        self.level = enter_params.get("level", 6)
         self.game_level = enter_params.get("game_level")
         self.definition = level.LEVEL[self.level]
         self.spanw_player_1_x = self.definition.get("position_player1_x", 0)
@@ -73,7 +73,7 @@ class PlayState(BaseState):
         self.clock = enter_params.get("clock")
 
         if self.clock is None:
-            self.clock = Clock(30)
+            self.clock = Clock(self.definition["time_play"])
 
             def countdown_timer():
                 self.clock.count_down()
@@ -148,20 +148,9 @@ class PlayState(BaseState):
         # score player 1
         render_text(
             surface,
-            f"Score player 1: {self.players[0].score}",
+            f"girl save: {self.players[0].girl_save}",
             settings.FONTS["small"],
             5,
-            5,
-            (255, 255, 255),
-            shadowed=True,
-        )
-
-        # score player 2
-        render_text(
-            surface,
-            f"Score player 2: {self.players[1].score}",
-            settings.FONTS["small"],
-            150,
             5,
             (255, 255, 255),
             shadowed=True,
@@ -171,7 +160,7 @@ class PlayState(BaseState):
             surface,
             f"Time: {self.clock.time}",
             settings.FONTS["small"],
-            settings.VIRTUAL_WIDTH - 60,
+            settings.VIRTUAL_WIDTH - 65,
             5,
             (255, 255, 255),
             shadowed=True,

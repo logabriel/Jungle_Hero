@@ -53,7 +53,7 @@ PLAYER_SPEED = 80
 
 GRAVITY = 980
 
-NUM_LEVELS = 3
+NUM_LEVELS = 6
 
 BASE_DIR = pathlib.Path(__file__).parent
 
@@ -107,7 +107,6 @@ SOUNDS = {
     "jump": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "jump.wav"),
     "timer": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "timer.wav"),
     "count": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "count.wav"),
-    "win": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "winfretless.wav"),
     "hit_bowie": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "hit_bowie.wav"),
     "bug_crash": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "bug_crash.wav"),
     "hyena_dead": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "hyena_dead.wav"),
