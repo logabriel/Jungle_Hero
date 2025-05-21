@@ -28,9 +28,9 @@ LEVEL: Dict[int, Dict[str, Any]] = {
     },
     4: {
         "position_player1_x": 0,
-        "position_player1_y": 1088,
+        "position_player1_y": 160,
         "position_player2_x": 0,
-        "position_player2_y": 1088,
+        "position_player2_y": 160,
         "girls_to_rescue": 4,
         "time_play": 180 #en segundos
     },
