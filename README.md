@@ -41,9 +41,22 @@
 
 ## Ejecución
 
-Desde la terminal, en la carpeta raíz del proyecto:
+Para ejecutar el juego **Jungle Hero**, sigue estos pasos desde la terminal:
 
-```bash
+```
+# Entra al directorio del proyecto
+cd Proyecto_videojuegos_A2025
+
+# Crea un entorno virtual de Python
+python3 -m venv .venv
+
+# Activa el entorno virtual
+source .venv/bin/activate  # En Linux
+
+# Instala las dependencias necesarias
+pip install -r requirements.txt
+
+# Ejecuta el juego
 python main.py
 ```
 
@@ -55,9 +68,18 @@ python main.py
 - **Materia:** Programacion de Videojuegos 
 - **Universidad:** Universidad de los Andes
 
+## Créditos de gráficos
+
+Los siguientes recursos gráficos gratuitos fueron utilizados en este proyecto:
+
+- Enemigos y sprites: [Free Enemy Sprite Sheets - Pixel Art](https://free-game-assets.itch.io/free-enemy-sprite-sheets-pixel-art)  
+- Tileset de pantano: [Free Swamp 2D Tileset - Pixel Art](https://free-game-assets.itch.io/free-swamp-2d-tileset-pixel-art)  
+- Personajes: [Free 3 Character Sprite - Pixel Art](https://free-game-assets.itch.io/free-3-character-sprite-pixel-art)
+
+Agradecemos a los autores de estos recursos por compartir su trabajo bajo licencias que permiten su uso educativo y no comercial.
+
 ### Recursos
 
-- Gráficos, música y sonidos: 
 - Motor base: [Gale Engine](https://github.com/alejandromujica/gale)
 
 ## Licencia
