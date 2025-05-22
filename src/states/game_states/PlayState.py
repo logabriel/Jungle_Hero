@@ -147,13 +147,20 @@ class PlayState(BaseState):
                     item.on_collide(player)
                     item.on_consume(player)
 
+
             if Player.girl_save == self.game_level.girls_to_rescue:
                 self.game_level.winNextLevel = True
                 player.score = 0
                 Timer.clear()
                 players_to_pass = [p for p in self.players if p is not None]
-                self.state_machine.change("transition", players=self.players, level=self.level)
+                self.state_machine.change(
+                    "transition",
+                    players=players_to_pass,
+                    level=self.level,
+                    num_players=self.num_players
+                )
                 return
+
 
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))
