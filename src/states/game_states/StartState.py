@@ -54,10 +54,6 @@ class StartState(BaseState):
             on_finish=self.arrive,
         )
 
-    def exit(self) -> None:
-        pygame.mixer.music.stop()
-        pygame.mixer.music.unload()
-
     def update(self, dt: float) -> None:
         self.martian_animation.update(dt)
 
