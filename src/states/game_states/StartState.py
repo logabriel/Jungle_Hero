@@ -62,7 +62,7 @@ class StartState(BaseState):
         self.martian_animation.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.fill((25, 130, 196))
+        surface.blit(settings.TEXTURES["blue_bg"], (0, 0))
         self.title.render(surface)
         surface.blit(
             self.martian_texture,
@@ -90,4 +90,4 @@ class StartState(BaseState):
                 self.martian_x = self.martian_end_x
                 self.arrive()
             else:
-                self.state_machine.change("play")
+                self.state_machine.change("character_select")
