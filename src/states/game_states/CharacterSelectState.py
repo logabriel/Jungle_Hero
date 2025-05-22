@@ -21,7 +21,15 @@ class CharacterSelectState(BaseState):
         pass
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.blit(settings.TEXTURES["blue_bg"], (0, 0))
+        jungle_bg = settings.TEXTURES["jungle_bg"]
+
+        surface.blit(
+            pygame.transform.scale(
+                jungle_bg,
+                (settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
+            ),
+            (0, 0)
+        )
 
         render_text(
             surface,

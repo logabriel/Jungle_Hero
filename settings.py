@@ -61,18 +61,6 @@ BASE_DIR = pathlib.Path(__file__).parent
 RIGHT = 0
 LEFT = 1
 
-# The spawn position of the player in each level
-SPAWN_PLAYER_1 = {
-    1: (0, VIRTUAL_HEIGHT - 66),
-    2: (0, VIRTUAL_HEIGHT - 80),
-    3: (0, VIRTUAL_HEIGHT - 66),
-}
-SPAWN_PLAYER_2 = {
-    1: (0, VIRTUAL_HEIGHT - 66),
-    2: (0, VIRTUAL_HEIGHT - 80),
-    3: (0, VIRTUAL_HEIGHT - 66),
-}
-
 LevelLoader = loaders.TmxLevelLoader
 
 TEXTURES = {

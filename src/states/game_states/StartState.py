@@ -42,7 +42,7 @@ class StartState(BaseState):
         self.tweening = True
 
         pygame.mixer.music.load(
-            settings.BASE_DIR / "assets" / "sounds" / "music_intro.ogg"
+            settings.BASE_DIR / "assets" / "sounds" / "Menu_audio.ogg"
         )
         pygame.mixer.music.play()
         Timer.tween(
@@ -58,7 +58,16 @@ class StartState(BaseState):
         self.martian_animation.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.blit(settings.TEXTURES["blue_bg"], (0, 0))
+        jungle_bg = settings.TEXTURES["jungle_bg"]
+
+        surface.blit(
+            pygame.transform.scale(
+                jungle_bg,
+                (settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
+            ),
+            (0, 0)
+        )
+
         self.title.render(surface)
         surface.blit(
             self.martian_texture,
