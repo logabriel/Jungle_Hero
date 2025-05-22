@@ -92,11 +92,11 @@ class TransitionState(BaseState):
             )
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-    if not self.transitioning and input_id == "enter" and input_data.pressed:
-        self.state_machine.change(
-            "play",
-            level=self.level,
-            players=self.players,
-            num_players=self.num_players
-        )
+        if not self.transitioning and input_id == "enter" and input_data.pressed:
+            self.state_machine.change(
+                "play",
+                level=self.level,
+                players=self.players,
+                num_players=self.num_players
+            )
 
