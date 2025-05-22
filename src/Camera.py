@@ -12,7 +12,6 @@ import pygame
 
 from src.GameEntity import GameEntity
 
-
 class Camera:
     def __init__(self, x: int, y: int, width: int, height: int) -> None:
         self.x = x
@@ -20,18 +19,27 @@ class Camera:
         self.width = width
         self.height = height
         self.collision_boundaries = None
-        self.following = None
+        self.following = []  
 
-    def attach_to(self, entity: GameEntity) -> None:
-        self.following = entity
+    def attach_to(self, entities) -> None:
+        if isinstance(entities, list):
+            self.following = [e for e in entities if e is not None]
+        else:
+            self.following = [entities]
 
     def set_collision_boundaries(self, rect: pygame.Rect) -> None:
         self.collision_boundaries = rect
 
     def update(self) -> None:
-        if self.following is not None:
-            self.x = self.following.x + self.following.width // 2 - self.width // 2
-            self.y = self.following.y + self.following.height // 2 - self.height // 2
+        if self.following:
+            xs = [entity.x + entity.width // 2 for entity in self.following]
+            ys = [entity.y + entity.height // 2 for entity in self.following]
+
+            center_x = sum(xs) / len(xs)
+            center_y = sum(ys) / len(ys)
+
+            self.x = int(center_x - self.width // 2)
+            self.y = int(center_y - self.height // 2)
 
         if self.collision_boundaries is not None:
             self.x = max(
