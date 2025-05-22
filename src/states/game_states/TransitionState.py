@@ -22,6 +22,7 @@ class TransitionState(BaseState):
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
             self.state_machine.change("win", players=self.players)
+            return
 
         self.radius = max(settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)  
         self.transitioning = True 
@@ -30,6 +31,12 @@ class TransitionState(BaseState):
         game_level = GameLevel(self.level - 1)
         game_level.render(self.previous_surface)        
         Player.girl_save = 0
+
+        if self.players is None:
+            self.players = []
+        else:
+            self.players = [p for p in self.players if p is not None]
+            
         for player in self.players:
             player.render(self.previous_surface)
             player.vx = 0
