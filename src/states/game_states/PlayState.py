@@ -101,7 +101,6 @@ class PlayState(BaseState):
 
             Timer.every(1, countdown_timer)
         else:
-            Timer.clear()
             Timer.resume()
         
         # Set the golden key and golden block as inactive.

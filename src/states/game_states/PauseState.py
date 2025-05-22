@@ -16,6 +16,7 @@ from gale.input_handler import InputData
 from gale.state import BaseState
 from gale.text import render_text
 from src.Player import Player
+from gale.timer import Timer
 
 import settings
 
