@@ -14,6 +14,7 @@ from src.definitions import level
 
 class TransitionState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
+        self.num_players = enter_params.get("num_players", len(enter_params.get("players", [])))
         self.level = enter_params.get("level") + 1
         self.players = enter_params.get("players")
 
@@ -91,10 +92,11 @@ class TransitionState(BaseState):
             )
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if not self.transitioning and input_id == "enter" and input_data.pressed:
-            self.state_machine.change(
-                "play",
-                level=self.level,
-                players=self.players,
-            )
+    if not self.transitioning and input_id == "enter" and input_data.pressed:
+        self.state_machine.change(
+            "play",
+            level=self.level,
+            players=self.players,
+            num_players=self.num_players
+        )
 
