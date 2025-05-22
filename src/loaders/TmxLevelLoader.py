@@ -116,7 +116,7 @@ class TmxLevelLoader:
                         "tile_index": frame_index,
                         "x": j * self.tilewidth,
                         "y": i * self.tileheight,
-                        "width": self.tilewidth,
+                        "width": self.tilewidth - 10,
                         "height": self.tileheight,
                     }
                 )
