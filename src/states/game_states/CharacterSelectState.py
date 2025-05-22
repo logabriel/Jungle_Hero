@@ -13,6 +13,10 @@ class CharacterSelectState(BaseState):
         self.options = ["1 Jugador", "2 Jugadores"]
         self.selected_index = 0
 
+    def exit(self) -> None:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.unload()
+        
     def update(self, dt: float) -> None:
         pass
 
