@@ -43,20 +43,24 @@
 
 Para ejecutar el juego **Jungle Hero**, sigue estos pasos desde la terminal:
 
-```
 # Entra al directorio del proyecto
+```
 cd Proyecto_videojuegos_A2025
-
+```
 # Crea un entorno virtual de Python
+```
 python3 -m venv .venv
-
+```
 # Activa el entorno virtual
+```
 source .venv/bin/activate  # En Linux
-
+```
 # Instala las dependencias necesarias
+```
 pip install -r requirements.txt
-
+```
 # Ejecuta el juego
+```
 python main.py
 ```
 
