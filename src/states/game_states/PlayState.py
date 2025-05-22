@@ -30,6 +30,7 @@ class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
         self.level = enter_params.get("level", 3)
         self.game_level = enter_params.get("game_level")
+        self.num_players = enter_params.get("num_players", 1)
         self.definition = level.LEVEL[self.level]
         self.spanw_player_1_x = self.definition.get("position_player1_x", 0)
         self.spawn_player_1_y = self.definition.get("position_player1_y", 0)
@@ -47,7 +48,7 @@ class PlayState(BaseState):
         self.tilemap = self.game_level.tilemap
         
         self.players = enter_params.get("players", [None, None])
-        #creacion player 1
+        # Creamos jugadores
         if self.players[0] is None:
             self.players[0] = Player(self.spanw_player_1_x, self.spawn_player_1_y, 1, self.game_level)
             self.players[0].change_state("idle")
@@ -55,13 +56,16 @@ class PlayState(BaseState):
             self.players[0].game_level = self.game_level
             self.players[0].tilemap = self.tilemap
         
-        # Creacion player 2
-        if self.players[1] is None:
-            self.players[1]= Player(self.spanw_player_2_x, self.spawn_player_2_y, 2, self.game_level)
-            self.players[1].change_state("idle")
+        if self.num_players == 2:
+            if self.players[1] is None:
+                self.players[1] = Player(self.spanw_player_2_x, self.spawn_player_2_y, 2, self.game_level)
+                self.players[1].change_state("idle")
+            else:
+                self.players[1].game_level = self.game_level
+                self.players[1].tilemap = self.tilemap
         else:
-            self.players[1].game_level = self.game_level
-            self.players[1].tilemap = self.tilemap
+            # Si es 1 jugador
+            self.players[1] = None
 
         self.camera = enter_params.get("camera")
 
@@ -83,14 +87,15 @@ class PlayState(BaseState):
 
                 if self.clock.time == 0:
                     self.players[0].change_state("dead")
-                    self.players[1].change_state("dead")
+                    if self.num_players == 2 and self.players[1]:
+                        self.players[1].change_state("dead")
 
             Timer.every(1, countdown_timer)
         else:
             Timer.clear()
             Timer.resume()
         
-        #Set the golden key and golden block as inactive.
+        # Set the golden key and golden block as inactive.
         for item in self.game_level.items:
             if item.texture_id == "key-gold":
                 if item.frame_index == 0:
@@ -100,16 +105,19 @@ class PlayState(BaseState):
                     self.itemBLock = item
                     self.itemBLock.active = False
 
-        self.score_next_level = 200 + self.level*28
+        self.score_next_level = 200 + self.level * 28
 
     def update(self, dt: float) -> None:
-        if self.players[0].is_dead or self.players[1].is_dead:
+        # Verificar muerte de jugadores activos
+        if self.players[0].is_dead or (self.num_players == 2 and self.players[1] and self.players[1].is_dead):
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
             Timer.clear()
             self.state_machine.change("game_over", self.players)
 
         for player in self.players:
+            if player is None:
+                continue
             player.update(dt)
 
             if player.y >= player.tilemap.height:
@@ -131,22 +139,23 @@ class PlayState(BaseState):
                     item.on_collide(player)
                     item.on_consume(player)
 
-            if Player.girl_save == self.game_level.girls_to_rescue: #change next level
+            if Player.girl_save == self.game_level.girls_to_rescue:  # cambio de nivel
                 self.game_level.winNextLevel = True
                 player.score = 0
                 Timer.clear()
-                self.state_machine.change("transition", players=self.players, level=self.level)             
+                self.state_machine.change("transition", players=self.players, level=self.level)
 
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))
         self.game_level.render(world_surface)
         
         for player in self.players:
-            player.render(world_surface)
+            if player is not None:
+                player.render(world_surface)
         
         surface.blit(world_surface, (-self.camera.x, -self.camera.y))
 
-        # score player 1
+        # Mostrar "girls" salvadas y tiempo
         render_text(
             surface,
             f"girl save: {Player.girl_save}",
@@ -180,9 +189,10 @@ class PlayState(BaseState):
             )
         else:
             for player in self.players:
-                player.on_input(input_id, input_data)
-    
-    #Generate a solid block in the first layer
+                if player is not None:
+                    player.on_input(input_id, input_data)
+
+    # Genera un bloque sólido en la primera capa
     def generate_item_block(self) -> None:
         item_i = self.tilemap.to_i(self.itemBLock.y)
         item_j = self.tilemap.to_j(self.itemBLock.x)          
