@@ -45,12 +45,10 @@ class AttackState(BaseEntityState):
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if self.entity.player_type == 1:
             if input_id == "move_left" and input_data.pressed:
-                Timer.clear()
                 self.entity.flipped = True
                 self.entity.direcction = settings.LEFT
                 self.entity.change_state("walk", "left")
             elif input_id == "move_right" and input_data.pressed:
-                Timer.clear()
                 self.entity.flipped = True
                 self.entity.direcction = settings.RIGHT
                 self.entity.change_state("walk", "right")
@@ -58,12 +56,10 @@ class AttackState(BaseEntityState):
                 self.entity.change_state("jump")
         else : 
             if input_id == "move_left_p2" and input_data.pressed:
-                Timer.clear()
                 self.entity.flipped = True
                 self.entity.direcction = settings.LEFT
                 self.entity.change_state("walk", "left")
             elif input_id == "move_right_p2" and input_data.pressed:
-                Timer.clear()
                 self.entity.flipped = True
                 self.entity.direcction = settings.RIGHT
                 self.entity.change_state("walk", "right")
