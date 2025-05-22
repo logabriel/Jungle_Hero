@@ -1,14 +1,14 @@
-# Jungle Hero (Super Martian Platformer)
+# Jungle Hero (Platformer)
 
 ## Descripción
 
-**Jungle Hero** es un juego de plataformas desarrollado como caso de estudio para la materia Programacion de Videojuegos A2025. Controla a uno o dos personajes a través de niveles llenos de peligros, criaturas y tesoros, con el objetivo de rescatar a todas las chicas en cada nivel y avanzar hasta completar la aventura.
+**Jungle Hero** es un juego de plataformas desarrollado como caso de estudio para la materia Programacion de Videojuegos A2025. Controla a uno o dos personajes a través de niveles llenos de peligros y criaturas, con el objetivo de rescatar a todas las chicas en cada nivel y avanzar hasta completar la aventura.
 
 ## Cómo jugar
 
 - El objetivo principal es rescatar a todas las chicas en cada nivel para poder avanzar al siguiente.
-- Esquiva o elimina criaturas enemigas, recoge monedas y llaves para desbloquear nuevas áreas.
-- El juego termina si mueren todos los jugadores o si se acaba el tiempo.
+- Esquiva o elimina criaturas enemigas.
+- El juego termina si mueren un jugador o si se acaba el tiempo.
 
 ## Controles
 
