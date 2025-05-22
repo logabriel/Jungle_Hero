@@ -27,5 +27,5 @@ class DrawableMixin:
         surface.blit(image, (self.x, self.y))
 
         #debug
-        #rect = pygame.Rect(self.x, self.y, frame.width, frame.height)
-        #pygame.draw.rect(surface, (255, 0, 0), rect, 2)  # Rojo, grosor 2
+        rect = pygame.Rect(self.x, self.y, frame.width, frame.height)
+        pygame.draw.rect(surface, (255, 0, 0), rect, 2)  # Rojo, grosor 2

@@ -15,6 +15,7 @@ import pygame
 from gale.input_handler import InputData
 from gale.state import BaseState
 from gale.text import render_text
+from src.Player import Player
 
 import settings
 
@@ -35,15 +36,16 @@ class PauseState(BaseState):
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))
         self.game_level.render(world_surface)
-
+        
         for player in self.players:
-            player.render(world_surface)
+            if player != None:
+                player.render(world_surface)
 
         surface.blit(world_surface, (-self.camera.x, -self.camera.y))
 
         render_text(
             surface,
-            f"Score: {self.player.score}",
+            f"Girl save: {Player.girl_save}",
             settings.FONTS["small"],
             5,
             5,

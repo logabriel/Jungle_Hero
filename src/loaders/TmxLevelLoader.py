@@ -98,8 +98,6 @@ class TmxLevelLoader:
                         }
                     )
 
-                    
-
     def load_creatures(self, level: Any, group: ET.Element) -> None:
         layer = group.find("layer")
         data = [line for line in layer.find("data").text.splitlines() if len(line) > 0]

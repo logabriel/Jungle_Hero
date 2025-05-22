@@ -29,7 +29,7 @@ CREATURES: Dict[int, Dict[str, Any]] = {
     },
     HIENA: {
         "texture_id": "creatures",
-        "walk_speed": 24,
+        "walk_speed": 30,
         "animation_defs": {"walk": {"frames": [19, 20, 21, 22, 23, 24, 25], "interval": 0.18}},
         "states": {"walk": creatures_states.SnailWalkState},
         "first_state": "walk",
