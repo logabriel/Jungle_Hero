@@ -14,5 +14,6 @@ from src.states.game_states.PlayState import PlayState
 from src.states.game_states.StartState import StartState
 from src.states.game_states.TransitionState import TransitionState
 from src.states.game_states.WinState import WinState
+from src.states.game_states.CharacterSelectState import CharacterSelectState
 
-(GameOverState, PauseState, PlayState, StartState, TransitionState, WinState)
+(GameOverState, PauseState, PlayState, StartState, TransitionState, WinState, CharacterSelectState)
