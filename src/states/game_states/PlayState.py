@@ -71,13 +71,17 @@ class PlayState(BaseState):
         else:
             # Si es 1 jugador
             self.players[1] = None
-
+            
         self.camera = enter_params.get("camera")
 
         if self.camera is None:
             self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
             self.camera.set_collision_boundaries(self.game_level.get_rect())
-            self.camera.attach_to(self.players[0])
+
+            if self.num_players == 2:
+                self.camera.attach_to([self.players[0], self.players[1]])
+            else:
+                self.camera.attach_to(self.players[0])
 
         self.clock = enter_params.get("clock")
 
