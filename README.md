@@ -2,7 +2,7 @@
 
 ## Descripción
 
-**Jungle Hero** Es un juego de plataformas desarrollado como proyecto final para la materia Programación de Videojuegos A2025. El jugador controla a uno o dos personajes a través de diversos niveles, cada uno lleno de peligros y criaturas. El objetivo es rescatar a todas las chicas en cada nivel para avanzar y completar la aventura.
+**Jungle Hero** es un juego de plataformas 2D desarrollado como proyecto final para la materia Programación de Videojuegos A2025. Combina desafíos clásicos del género con una innovadora mecánica de rescate cooperativo. El objetivo es rescatar a todas las chicas en cada nivel para avanzar de nivel y completar la aventura.
 
 El juego cuenta con seis niveles, y la dificultad aumenta progresivamente a medida que se avanza. Cada nivel presenta distintos enemigos con velocidades variables, diseñados para obstaculizar el progreso del jugador. Además, el jugador debe completar cada nivel en el menor tiempo posible, ya que si el reloj llega a cero antes de rescatar a todas las chicas, se pierde.
 
