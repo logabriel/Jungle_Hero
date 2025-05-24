@@ -5,6 +5,7 @@ from gale.state import BaseState
 from gale.text import render_text
 
 import settings
+from src.Player import Player
 
 class WinState(BaseState):
     def enter(self, players) -> None:
@@ -41,6 +42,18 @@ class WinState(BaseState):
             (255, 255, 255),
             center=True,
             shadowed=True,
+        )
+        
+        y = 50
+        render_text(
+            surface,
+            f"total number of girls rescued: {Player.girl_save_total}",
+            settings.FONTS["small"],
+            settings.VIRTUAL_WIDTH // 2,
+            y + 10,
+            (255, 255, 255),
+            shadowed=True,
+            center=True,
         )
 
         render_text(
