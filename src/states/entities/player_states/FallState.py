@@ -17,6 +17,13 @@ from src.states.entities.BaseEntityState import BaseEntityState
 class FallState(BaseEntityState):
     def enter(self) -> None:
         self.entity.change_animation("jump")
+        self.point_initial = self.entity.y + self.entity.height
+    
+    def exit(self) -> None:
+        self.point_final = self.entity.y + self.entity.height
+
+        if abs(self.point_initial - self.point_initial) >= self.entity.tilemap.tileheight * 20:
+            self.entity.is_dead = True
 
     def update(self, dt: float) -> None:
         self.entity.vy += settings.GRAVITY * dt
