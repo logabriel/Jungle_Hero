@@ -185,6 +185,26 @@ class PlayState(BaseState):
 
         render_text(
             surface,
+            f"Level: {self.level}",
+            settings.FONTS["small"],
+            settings.VIRTUAL_WIDTH // 2,
+            5,
+            (255, 255, 255),
+            shadowed=True,
+        )
+
+        render_text(
+            surface,
+            f"Girls to find: {self.game_level.girls_to_rescue}",
+            settings.FONTS["small"],
+            5,
+            20,
+            (255, 255, 255),
+            shadowed=True,
+        )
+
+        render_text(
+            surface,
             f"Time: {self.clock.time}",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH - 65,
